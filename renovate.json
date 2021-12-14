@@ -1,0 +1,35 @@
+{
+    "extends": [
+      "config:base"
+    ],
+    "timezone": "Asia/Tokyo",
+    "labels": ["renovate"],
+    "vulnerabilityAlerts": {
+      "labels": ["security"]
+    },
+    "lockFileMaintenance": {
+      "enabled": true,
+      "schedule": ["before 3am on the first day of the month"]
+    },
+    "packageRules": [
+      {
+        "matchUpdateTypes": ["major"],
+        "labels": ["renovate", "update-major"]
+      },
+      {
+        "matchUpdateTypes": ["minor", "patch"],
+        "excludePackageNames": ["node", "next"],
+        "labels": ["renovate", "update-minor"],
+        "groupName": "non-major-updates",
+        "schedule": ["before 3am on the first day of the month"]
+      },
+      {
+        "matchPackageNames": ["node"],
+        "labels": ["renovate", "node-version"]
+      },
+      {
+        "matchPackageNames": ["next"],
+        "labels": ["renovate", "nextjs-version"]
+      }
+    ]
+  }
